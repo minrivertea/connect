@@ -97,7 +97,7 @@ INSTALLED_APPS = (
 # django static information
 DJANGO_STATIC_SAVE_PREFIX = '/tmp/cache-forever/westlord'
 DJANGO_STATIC_NAME_PREFIX = '/cache-forever/westlord'
-DJANGO_STATIC = True
+DJANGO_STATIC = False
 DJANGO_STATIC_MEDIA_URL = 'http://static.westlord.co.uk'
 MEDIA_URL = '/'
 
