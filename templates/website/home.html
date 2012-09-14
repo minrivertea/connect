@@ -1,0 +1,241 @@
+{% extends "base.html" %}
+{% load thumbnail django_static i18n %}
+
+{% block meta-description %}{% endblock %}
+{% block title %}{% endblock %}
+
+
+{% block extrajs %}
+
+{% endblock %}
+
+
+
+{% block extracss %}
+<style type="text/css">
+#feature {
+  width: 100%;	
+  float: left;
+  margin: 40px 0 30px 0;
+}
+
+#feature .super {
+  opacity: 0.95;   
+}
+
+#feature .super:hover {
+  opacity: 1;
+  box-shadow: 0 1px 8px #999;   
+}
+
+.linkback {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: #fff;
+  opacity: 0.7;
+  width: 100%;
+  float: left;
+  height: 60px;   
+}
+
+a.featurelink {
+  font-size: 30px;
+  line-height: 1.2em;
+  font-weight: normal;	
+  text-align: right;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+a.feature {
+  text-decoration: underline;
+  font-weight: normal;
+}
+
+#banner {
+  width: 100%;
+  height: auto;
+  float: left;
+  padding: 0px 0 0px;
+  margin: 0px 0 20px 0;
+}
+
+#banner .box {
+  width: 300px;
+  float: left;
+  margin: 0 30px 0 0;	
+}
+
+#banner .box:last-child {
+  margin-right: 0;	
+}
+
+#banner .box p, #twocol div.box p, #more .inner p {
+  margin: 0;   
+}
+
+#twocol {
+  float: left;
+  width: 100%;
+  margin: 30px 0 0 0;
+  height: auto;    
+}
+
+#twocol div.box {
+  width: 46%;
+  margin: 0 16px 0 0;
+  background: #333;
+  color: #fff; 
+  float: left; 
+  height: auto;
+  padding: 15px; 
+  position: relative;
+}
+
+#twocol div.box:hover {
+  background: #222;
+  box-shadow: 0 1px 5px #444;   
+}
+
+#twocol .super div.box:last-child {
+  margin-right: 0;   
+}
+
+#twocol div.box h3, #twocol div.box h3 a {
+    color: #FFFFFF;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    letter-spacing: 0;
+    margin: 0 0 5px;
+    padding-top: 0;
+}
+
+#twocol div.box p {
+  font-size: 14px;
+  margin: 0;
+  color: #e1e1e1;
+}
+
+#twocol div.box img {
+  float: left;
+  margin: 0 20px 0px 0;   
+}
+
+#more  {
+  margin: 20px 0;
+  float: left;
+  width: 100%;   
+}
+
+#more .inner {
+  background: #fff;
+  box-shadow: 0 1px 8px #c1c1c1;
+  float: left;
+  width: 94%;
+  padding: 3%;   
+}
+
+#more .inner.col1 {
+    float: left;
+    margin: 0 30px 0 0;
+    width: 42%;
+}
+
+#more .inner.col1:last-child {
+  margin: 0;   
+}
+
+#more .inner h3 {
+  margin: 0 0 10px 0;
+  padding: 0; 
+  color: #333;  
+}
+
+#more .inner h3 a {}
+
+</style>
+{% endblock %}
+
+{% block content %}
+
+{% if homepage.intro_box_1 %}
+<div id="banner">
+  <div class="super">
+	  
+		<div class="box">
+			{{ homepage.intro_box_1|safe }}
+			<a href="{{ homepage.intro_box_1_page.get_absolute_url }}" class="button">{{ homepage.intro_box_1_text }}</a>
+		</div>
+		
+		<div class="box">
+			{{ homepage.intro_box_2|safe }}
+			<a href="{{ homepage.intro_box_2_page.get_absolute_url }}" class="button">{{ homepage.intro_box_2_text }}</a>
+		</div>
+		
+		<div class="box">
+			{{ homepage.intro_box_3|safe }}
+			<a href="{{ homepage.intro_box_3_page.get_absolute_url }}" class="button">{{ homepage.intro_box_3_text }}</a>
+		</div>
+	  
+	</div>
+</div>	
+{% endif %}
+
+{% if homepage.image_promo_image %}
+<div id="feature">
+  <div class="super">
+    <a href="{{ homepage.image_promo_page.get_absolute_url }}"><span class="link"></span></a>
+    <div class="linkback"></div>
+    <a href="{{ homepage.image_promo_page.get_absolute_url }}" class="featurelink">{{ homepage.image_promo_text|safe }} &raquo;</a>
+    {% thumbnail homepage.image_promo_image "960" crop="" as im %}
+    	<img src="{{ im.url }}">
+    {% endthumbnail %}
+  </div>
+</div>
+{% endif %}
+
+{% if homepage.twin_box_1 %}
+<div id="more">
+	<div class="super">
+		<div class="inner col1">
+		      {{ homepage.twin_box_1|safe }}
+	    </div>
+        <div class="inner col1">
+		      {{ homepage.twin_box_2|safe }}   
+	    </div>
+	</div>
+</div>
+{% endif %}
+
+{% if homepage.long_box %}
+<div id="more">
+	<div class="super">
+		<div class="inner">
+		      {{ homepage.long_box|safe }}
+	   </div>
+	</div>
+</div>
+{% endif %}
+
+{% if latestnews %}
+<div id="twocol">
+  <div class="super">
+    {% for n in latestnews %}
+    <div class="box">
+        <a href="{% url news_item n.slug %}"><span class="link"></span></a>
+        {% thumbnail n.image "120" crop="center" as im %}
+            <img src="{{ im.url }}"/>
+        {% endthumbnail %}
+        <h3><a href="{% url news_item n.slug %}">{{ n.title }}</a></h3>
+        <p>{{ n.summary }}</p>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
+
+{% endblock %}

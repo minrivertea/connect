@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load thumbnail django_static i18n %}
+
+{% block meta-description %}{{ item.summary }}{% endblock %}
+{% block title %}{{ item.title }}{% endblock %}
+
+
+{% block extrajs %}
+
+{% endblock %}
+
+
+
+{% block extracss %}
+<style type="text/css">
+p.date {
+  color: #555;
+  font-size: 18px;
+  margin: 0;   
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div id="content">
+  <div class="super">
+  		<h1>{{ item.title }}</h1>
+  		
+  		<p class="date">{{ item.date_posted|date:"d M Y" }}</p>
+  		
+  		<div class="right">
+  			<div class="box">
+  				<img src="{% staticfile '/images/dad2.jpg' %}"/>
+  				<h4>Title of project</h4>
+  				<p>We did this amazing project in just 6 days and saved £2m. <a href="">Find out how &raquo;</a></p>
+  			</div>
+  		</div>
+  		
+  		<div class="left">
+		{{ item.text|safe }}
+		</div>
+  </div>
+</div>
+
+{% endblock %}

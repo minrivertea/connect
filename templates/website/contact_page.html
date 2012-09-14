@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load thumbnail django_static i18n %}
+
+{% block meta-description %}{{ page.meta_description }}{% endblock %}
+{% block title %}{{ page.title }}{% endblock %}
+
+
+{% block extracss %}
+<style type="text/css">
+
+input, textarea {
+  border: none;
+  width: 600px;
+  float: left;
+  margin: 5px;
+  font-size: 16px;
+  padding: 10px;
+  color: #999;
+  font-family: Georgia,"STKaiti",华文楷体,serif;
+}
+
+p.success {
+  font-size: 23px;
+  color: red;   
+}
+
+
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div id="content">
+  <div class="super">
+  		<h1>{{ page.title }}</h1>
+  		
+  		<div class="right">
+  			{% for box in page.get_boxes %}
+  			   {{ box|safe }}
+  			{% endfor %}
+  		</div>
+  		
+  		<div class="left">
+		{{ page.content|safe }}
+		
+		
+		{% if messages %}
+		  {% for message in messages %}
+		      <p class="success">{{ message }}</p>
+		  {% endfor %}
+		{% else %}
+		<h3>{% trans 'Send us a message' %}</h3>
+		<form action="" method="post">
+		  {% csrf_token %}
+		  <input name="name" id="id_name" type="text" title="{% trans 'Your name' %}" value="" class="clearMeFocus"/>
+		  <input name="email" id="id_email" type="text" title="{% trans 'Your email address' %}" value="" class="clearMeFocus"/>
+		  <textarea rows="6" name="message" id="id_message" type="text" title="{% trans 'Your message' %}" value="" class="clearMeFocus"></textarea>
+		  <input class="submit button" type="submit" value="{% trans 'Send message!' %}"/>
+		</form>
+		{% endif %}
+		
+		</div>
+  </div>
+</div>
+
+{% endblock %}

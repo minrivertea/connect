@@ -1,0 +1,115 @@
+{% load django_static i18n thumbnail %}
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="description" content="{% block meta-description %}{% endblock %}" />
+    <meta name="copyright" content="Chris West" />
+    <meta name="creator" content="Chris West" />
+    <meta name="generator" content="Django - http://www.djangoproject.com" />
+    <meta name="google-site-verification" content="Rt7aZU30wexEzi6zMnH-4Bpis48i7qidp-FAsNOVT6I" />
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+	<meta content="en-gb" http-equiv="Content-Language" />
+	<meta name="DC.format" content="text/html" />
+	<meta name="DC.type" content="Django Site" />
+	<meta name="robots" content="ALL" />
+	<title>{% block title %}{% endblock %} | {% trans 'Connect Professional Training' %}</title>
+	
+	
+	<link rel="stylesheet" type="text/css" media="screen" href="{% staticfile '/css/styles.css' %}" />
+    <script type="text/javascript" src="{% staticfile '/js/jquery-1.8.1.min.js' %}"></script>
+    {% block extracss %}{% endblock %}
+    {% block extrahead %}{% endblock %}
+                                
+</head>
+
+<body>
+
+<div id="header">
+  <div class="super">
+	<div id="lang">
+		
+    {% get_current_language as LANGUAGE_CODE %}
+        
+	<a href="{% url changelang 'zh' %}" class="{% if LANGUAGE_CODE == 'zh' %}selected{% endif %}"><img src="{% staticfile '/images/china_flag.jpg' %}"/></a>
+	<a href="{% url changelang 'en' %}" class="{% if LANGUAGE_CODE == 'en' %}selected{% endif %}"><img src="{% staticfile '/images/flag_uk.jpg' %}"/></a>
+	</div>
+	
+	<div id="logo">
+	  <a href="/"><img src="{% staticfile '/images/logo.jpg' %}" /></a>
+	</div>
+		
+	</div>
+		<div id="navigation">
+			<div class="super">
+			<ul>
+				<li><a href="/">{% trans 'Home' %}</a></li>
+				{% for p in topnav %}
+				    <li><a class="{% if p.slug in request.path %}selected{% endif %}" href="{{ p.get_absolute_url }}">{{ p.title }}</a></li>
+				{% endfor %}
+				<li><a class="{% if '/news/' in request.path %}selected{% endif %}" href="{% url news %}">{% trans 'News' %}</a></li>
+			</ul>
+			</div>
+		</div>
+</div>
+
+
+{% block content %} {% endblock %}
+
+
+<div id="footer">
+	<div class="super">
+		<p class="explain">We've worked with some of Fujian's largest companies, training their staff in English. <br/>Click a logo to see more &raquo;</p>
+		<div id="testimonials">
+		{% for x in testimonials %}
+		  {% thumbnail x.image "120x120" crop="center" as im %}
+		  <a href="{{ x.get_absolute_url }}"><img src="{{ im.url }}" /></a>
+		  {% endthumbnail %}
+		{% endfor %}
+		</div>
+	</div>
+</div>
+
+
+
+{% block extrajs %}{% endblock %}
+	<script type="text/javascript">
+
+		$(document).ready( function() {
+
+			// clear input on focus
+			var clearMePrevious = '';
+			$('.clearMeFocus').each( function() {
+				if ($(this).val() == '') {
+				    var title = $(this).attr('title');
+				    $(this).val(title);
+				}
+			});
+			
+			$('.clearMeFocus').focus(function()
+			{
+				if($(this).val()==$(this).attr('title'))
+				{
+					clearMePrevious = $(this).val();
+					$(this).val('');
+					$(this).css('color', '#333');
+				}
+			});
+			
+			// if field is empty afterward, add text again
+			$('.clearMeFocus').blur(function()
+			{
+				if($(this).val()=='')
+				{
+					$(this).val(clearMePrevious);
+					$(this).css('color', '#999');
+				}
+			});
+					
+		});
+		
+		
+	</script>
+
+</body>
+</html>

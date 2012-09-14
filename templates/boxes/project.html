@@ -1,0 +1,14 @@
+{% load django_static thumbnail %}
+
+
+<div class="box{% if box.link %} link{% endif %}">
+    {% if box.link %}<a href="{{ box.link }}"><span class="link"></span></a>{% endif %}
+  	{% if box.image %}
+  	{% thumbnail box.image "200" crop="" as im %}
+  	 <img src="{{ im.url }}" />
+  	{% endthumbnail %}
+   	{% endif %}
+
+   	{% if box.title %}<h4>{{ box.title }}</h4>{% endif %}
+  	{% if box.content %}{{ box.content|safe }}{% endif %}
+</div>
