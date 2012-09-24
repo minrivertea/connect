@@ -11,12 +11,14 @@ from tinymce import models as tinymce_models
 
 class HomePage(models.Model):
     is_active = models.BooleanField(default=True)
-    identifier = models.CharField(max_length=200, null=True, blank=True,
-        help_text="A name you give the homepage to remind you which one it is!")
+    identifier = models.CharField(max_length=200, null=True, blank=True, default="homepage",
+        help_text="An optional name you give the homepage to remind you which one it is!")
     
     intro_box_1 = tinymce_models.HTMLField(help_text="Use Heading3 and Paragraph only!")
-    intro_box_1_page = models.ForeignKey('Page', related_name="intro_box_1")
-    intro_box_1_text = models.CharField(max_length=200)
+    intro_box_1_page = models.ForeignKey('Page', related_name="intro_box_1",
+        help_text="Which page does this box link to?")
+    intro_box_1_text = models.CharField(max_length=200,
+        help_text="The words which appear in the button")
     
     intro_box_2 = tinymce_models.HTMLField()
     intro_box_2_page = models.ForeignKey('Page', related_name="intro_box_2")
@@ -31,16 +33,23 @@ class HomePage(models.Model):
     
     long_box = tinymce_models.HTMLField(null=True, blank=True)
     
-    image_promo_image = models.ImageField(upload_to='images/promo')
+    image_promo_image = models.ImageField(upload_to='images/promo',
+        help_text="A large image spanning the whole page. 960px wide or more please!")
     image_promo_text = models.CharField(max_length=200)
     image_promo_page = models.ForeignKey('Page', related_name="image_promo_text")
     image_promo_link = models.URLField(null=True, blank=True)
     
-    meta_title = models.CharField(max_length=200, null=True, blank=True)
-    meta_description = models.TextField(null=True, blank=True)
-    meta_keywords = models.TextField(null=True, blank=True)
+    meta_title = models.CharField(max_length=200, null=True, blank=True,
+        help_text="The title of the page, appears in search engines.")
+    meta_description = models.TextField(null=True, blank=True,
+        help_text="A description of the website - useful for search engines.")
+    meta_keywords = models.TextField(null=True, blank=True,
+        help_text="Keywords related to this website.")
     
-    lang = models.CharField(max_length=2, choices=settings.LANGUAGES)
+    
+    google_analytics = models.TextField(help_text="The code snippet from Google Analytics used to track your customers. Include the <script> tags please!")
+    lang = models.CharField(max_length=2, choices=settings.LANGUAGES,
+        help_text="Which language is this variation of the homepage?")
     
     def __unicode__(self):
         return self.identifier
@@ -48,13 +57,15 @@ class HomePage(models.Model):
        
 
 class News(models.Model):
-    date_posted = models.DateTimeField()
-    slug = models.SlugField()
-    title = models.CharField(max_length=256)
-    summary = models.TextField()
+    date_posted = models.DateTimeField(help_text="Set this to a date in the future to do scheduled posting of news.")
+    slug = models.SlugField(help_text="The URL of the page - only dashes and lowercase a-z characters please!")
+    title = models.CharField(max_length=256, help_text="Name of the news item.")
+    summary = models.TextField(help_text="A short summary of the item (appears in listings)")
     text = tinymce_models.HTMLField()
-    image = models.ImageField(upload_to='images/news', blank=True, null=True)
-    is_published = models.BooleanField(default=False)
+    image = models.ImageField(upload_to='images/news', blank=True, null=True,
+        help_text="An optional image; larger than 200px wide please!")
+    is_published = models.BooleanField(default=False,
+        help_text="Uncheck this to remove item from the website but continue editing (draft).")
     
     
     def __unicode__(self):
@@ -153,10 +164,3 @@ class Page(models.Model):
         url = "/%s/" % self.slug  
         return url
 
-    def get_products_mentioned(self):
-        teas = Product.objects.filter(is_active=True)
-        products = []
-        for tea in teas:
-            if tea.name in self.content:
-                products.append(tea)
-        return products

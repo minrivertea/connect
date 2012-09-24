@@ -10,6 +10,8 @@ from django.contrib import messages
 from website.models import *
 from website.forms import *
 
+from datetime import datetime
+
 
 #render shortcut
 def render(request, template, context_dict=None, **kwargs):
@@ -39,11 +41,11 @@ def changelang(request, code):
 
 
 def index(request):
-    latestnews = News.objects.filter(is_published=True).exclude(title=None).order_by('-date_posted')[:2]                 
+    latestnews = News.objects.filter(is_published=True, date_posted__lte=datetime.now()).exclude(title=None).order_by('-date_posted')[:2]                 
     return render(request, "website/home.html", locals())
 
 def news(request):
-    news_list = News.objects.exclude(title=None)
+    news_list = News.objects.filter(is_published=True, date_posted__lte=datetime.now()).exclude(title=None)
     
     paginator = Paginator(news_list, 10) # Show 25 contacts per page
 
