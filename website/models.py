@@ -159,7 +159,10 @@ class Page(models.Model):
     
     def get_children(self):
         items = Page.objects.filter(parent=self)
-        return items
+        if len(items) < 1:
+            return None
+        else:
+            return items
     
     def get_absolute_url(self):
         url = "/%s/" % self.slug  

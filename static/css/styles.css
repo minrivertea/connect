@@ -121,7 +121,7 @@ h4 {
 	float: left;
 	padding: 20px 0 0 0;
 	width: 100%;
-	margin: 0 0 15px 0;
+	margin: 0 0 35px 0;
 	background: #fff;
 }
 
@@ -165,7 +165,8 @@ h4 {
   width: auto;
   border-left: 1px solid #103768;
   border-right: 1px solid #2f5c95;
-  float: left;	
+  float: left;
+  height: 44px;	
 }
 
 #navigation ul li {
@@ -184,6 +185,7 @@ h4 {
     border-right: 1px solid #103768;
     text-shadow: 0px 0px 2px #000;
     position: relative;
+    z-index: 21;
 }
 
 #navigation ul li:last-child a {
@@ -191,29 +193,70 @@ h4 {
 }
 
 #navigation ul li a:hover {
-  background: #2e588d;
-  border-radius: 3px;
+  background: #2F5C95;
   text-decoration: none; 
   border-right: 1px solid transparent;  
 }
 
+#navigation ul li:hover a {
+  background: #2F5C95; 
+  border-right: 1px solid transparent;  
+}
+
 #navigation ul li a.selected {
-  background: #2e588d; 
+  background: #2F5C95; 
   border-right: 1px solid transparent; 
 } 
 
 #navigation ul li a.selected:before {
-    border-color: #2e588d transparent -moz-use-text-color;
+    border-color: #2F5C95 transparent -moz-use-text-color;
     border-style: solid solid none;
-    border-width: 25px 25px 0;
-    bottom: -25px;
+    border-width: 15px 15px 0;
+    bottom: -15px;
     content: " ";
     display: block;
     height: 0;
-    left: 15%;
+    left: 30%;
     position: absolute;
     width: 0;
     z-index: 2;
+}
+
+#navigation ul.subnav {
+    background: none repeat scroll 0 0 #2F5C95;
+    border: medium none;
+    box-shadow: 0 2px 3px #000000;
+    display: none;
+    float: left;
+    height: auto;
+    padding: 5px 0 5px;
+    position: absolute;
+    top: 44px;
+    width: auto;
+    z-index: 20;
+}
+
+#navigation li:hover ul.subnav {
+  display: block;   
+}
+
+#navigation ul.subnav li {
+  float: none;   
+}
+
+#navigation ul.subnav a {
+  color: #fff;
+  text-shadow: none;
+  border: none;
+  margin: 0 0 0px 0;
+  padding: 0 30px 0 15px;
+  float: none;
+  font-size: 13px;
+}
+
+#navigation ul.subnav a:hover {
+  background: none;
+  text-decoration: underline; 
 }
 
 

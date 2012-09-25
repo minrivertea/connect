@@ -45,10 +45,20 @@
 			<ul>
 				<li><a href="/">{% trans 'Home' %}</a></li>
 				{% for p in topnav %}
-				    <li><a class="{% if p.slug in request.path %}selected{% endif %}" href="{{ p.get_absolute_url }}">{{ p.title }}</a></li>
+				    <li rel="{{ p.slug }}">
+				      <a class="{% if p.slug in request.path %}selected{% endif %}" href="{{ p.get_absolute_url }}">{{ p.title }}</a>
+				      {% if p.get_children %}
+		                  <ul class="subnav" rel="{{ p.slug }}">
+		                  {% for x in p.get_children %}
+		                      <li><a href="{{ x.get_absolute_url }}">{{ x.title }}</a></li>
+		                  {% endfor %}
+		                  </ul>
+		              {% endif %}
+		            </li>
 				{% endfor %}
 				<li><a class="{% if '/news/' in request.path %}selected{% endif %}" href="{% url news %}">{% trans 'News' %}</a></li>
 			</ul>
+			
 			</div>
 		</div>
 </div>
