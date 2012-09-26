@@ -63,6 +63,9 @@
   		</div>
   		
   		<div class="left">
+  		    
+  		    {{ page.content|safe }}
+  		    
             <ul id="news">
             {% for n in news.object_list %}
                 <li>

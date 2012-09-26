@@ -44,26 +44,6 @@ def index(request):
     latestnews = News.objects.filter(is_published=True, date_posted__lte=datetime.now()).exclude(title=None).order_by('-date_posted')[:2]                 
     return render(request, "website/home.html", locals())
 
-def news(request):
-    news_list = News.objects.filter(is_published=True, date_posted__lte=datetime.now()).exclude(title=None)
-    
-    paginator = Paginator(news_list, 10) # Show 25 contacts per page
-
-    # Make sure page request is an int. If not, deliver first page.
-    try:
-        page = int(request.GET.get('page', '1'))
-    except ValueError:
-        page = 1
-
-    # If page request (9999) is out of range, deliver last page of results.
-    try:
-        news = paginator.page(page)
-    except (EmptyPage, InvalidPage):
-        news = paginator.page(paginator.num_pages)
-    
-    return render(request, 'website/news.html', locals())
-
-
 def news_item(request, slug):  
     item = get_object_or_404(News, slug=slug)
     return render(request, 'website/news_item.html', locals())
@@ -74,6 +54,24 @@ def page(request, slug, x=None, y=None, z=None):
     
     if x or y or z:
         return HttpResponseRedirect(page.get_absolute_url())
+    
+    if slug == 'news':
+        news_list = News.objects.filter(is_published=True, date_posted__lte=datetime.now()).exclude(title=None)
+    
+        paginator = Paginator(news_list, 10) # Show 25 contacts per page
+    
+        # Make sure page request is an int. If not, deliver first page.
+        try:
+            p = int(request.GET.get('page', '1'))
+        except ValueError:
+            p = 1
+    
+        # If page request (9999) is out of range, deliver last page of results.
+        try:
+            news = paginator.page(p)
+        except (EmptyPage, InvalidPage):
+            news = paginator.page(paginator.num_pages)
+            
         
     template = "website/page.html"
     if page.template:

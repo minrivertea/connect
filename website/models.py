@@ -14,7 +14,8 @@ class HomePage(models.Model):
     identifier = models.CharField(max_length=200, null=True, blank=True, default="homepage",
         help_text="An optional name you give the homepage to remind you which one it is!")
     
-    logo_tagline = models.CharField(max_length=200, blank=True, null=True)
+    logo_tagline = models.CharField(max_length=200, blank=True, null=True,
+        help_text="A tagline that appears near the logo in the header of all pages.")
     
     intro_box_1 = tinymce_models.HTMLField(help_text="Use Heading3 and Paragraph only!")
     intro_box_1_page = models.ForeignKey('Page', related_name="intro_box_1",
@@ -49,7 +50,7 @@ class HomePage(models.Model):
         help_text="Keywords related to this website.")
     
     
-    google_analytics = models.TextField(help_text="The code snippet from Google Analytics used to track your customers. Include the <script> tags please!",
+    google_analytics = models.TextField(help_text="The code snippet from Google Analytics used to track your customers. Include the script tags please!",
         blank=True, null=True)
     lang = models.CharField(max_length=2, choices=settings.LANGUAGES,
         help_text="Which language is this variation of the homepage?")

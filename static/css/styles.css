@@ -128,8 +128,19 @@ h4 {
 #logo {
   height:80px;
   float: left;
-  width: 300px;
-  margin: 0px 0 0 0px;  
+  margin: 0 40px 0 0;  
+}
+
+span.tagline {
+    display: block;
+    float: left;
+    font-size: 30px;
+    font-style: italic;
+    height: auto;
+    position: relative;
+    top: 21px;
+    width: auto;
+    color: #555;
 }
 
 #lang {

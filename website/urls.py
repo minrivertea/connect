@@ -5,6 +5,5 @@ import views
 
 urlpatterns = patterns('',
     url(r'^$', views.index, name="home"),
-    url(r'^news/$', views.news, name="news"),
     url(r'^news/(?P<slug>[\w-]+)/$', views.news_item, name="news_item"),
 )
