@@ -91,11 +91,16 @@ RIGHT_BOXES = (
 
 
 class RightBox(models.Model):
-    title = models.CharField(max_length=200, blank=True, null=True)
-    template = models.CharField(max_length=200, choices=RIGHT_BOXES)
-    content = tinymce_models.HTMLField(blank=True, null=True)
-    image = models.ImageField(null=True, blank=True, upload_to="images/right-boxes")
-    link = models.CharField(blank=True, null=True, max_length=256)
+    title = models.CharField(max_length=200, blank=True, null=True,
+        help_text="Optional title of the box (appears on the page)")
+    template = models.CharField(max_length=200, choices=RIGHT_BOXES,
+        help_text="Choose which kind of box it is")
+    content = tinymce_models.HTMLField(blank=True, null=True,
+        help_text="The text content of the box")
+    image = models.ImageField(null=True, blank=True, upload_to="images/right-boxes",
+        help_text="An optional image to appear in the box. At least 200px wide please!")
+    link = models.CharField(blank=True, null=True, max_length=256, 
+        help_text="An optional link which will be applied to the whole box.")
     
     def __unicode__(self):
         return self.title
@@ -104,18 +109,26 @@ class RightBox(models.Model):
 
 
 class Page(models.Model):
-    slug = models.SlugField()
-    title = models.CharField(max_length=200)
-    meta_title = models.CharField(max_length=200, blank=True, null=True)
-    meta_description = models.TextField(blank=True, null=True)
-    parent = models.ForeignKey('self', blank=True, null=True)
+    slug = models.SlugField(help_text="No spaces or special characters like !%$£%^ only dashes '-' and lowercase letters.")
+    title = models.CharField(max_length=200,
+        help_text="Title of the page - appears in the page.")
+    meta_title = models.CharField(max_length=200, blank=True, null=True,
+        help_text="A more verbose title useful for Google")
+    meta_description = models.TextField(blank=True, null=True, 
+        help_text="A description of the page useful for Google.")
+    parent = models.ForeignKey('self', blank=True, null=True, 
+        help_text="Is this the subpage of another?")
     content = tinymce_models.HTMLField()
-    image = models.ImageField(upload_to='images/learn', blank=True, null=True)
+    image = models.ImageField(upload_to='images/learn', blank=True, null=True,
+        help_text="Optional promo image for this page.")
     template = models.CharField(max_length=200, blank=True, null=True, 
         help_text="Leave this alone if you don't know what it does!")
-    is_top_nav = models.BooleanField(default=False)
-    top_nav_position = models.IntegerField(default=0, blank=True, null=True)
-    is_client_testimonial = models.BooleanField(default=False)
+    is_top_nav = models.BooleanField(default=False,
+        help_text="Check this box if you want this page to appear in the main navigation")
+    top_nav_position = models.IntegerField(default=0, blank=True, null=True,
+        help_text="Which position should the item appear in the topnav (left-to-right, 0 is furthest left)")
+    is_client_testimonial = models.BooleanField(default=False,
+        help_text="Click this if the page is a client testimonial. It will appear in the footer if it is.")
     
     def __unicode__(self):
         return self.title
