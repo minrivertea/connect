@@ -109,7 +109,7 @@ class RightBox(models.Model):
 
 
 class Page(models.Model):
-    slug = models.SlugField(help_text="No spaces or special characters like !%$£%^ only dashes '-' and lowercase letters.")
+    slug = models.SlugField(help_text="No spaces or special characters only dashes '-' and lowercase letters.")
     title = models.CharField(max_length=200,
         help_text="Title of the page - appears in the page.")
     meta_title = models.CharField(max_length=200, blank=True, null=True,
