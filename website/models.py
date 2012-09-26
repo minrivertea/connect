@@ -14,6 +14,8 @@ class HomePage(models.Model):
     identifier = models.CharField(max_length=200, null=True, blank=True, default="homepage",
         help_text="An optional name you give the homepage to remind you which one it is!")
     
+    logo_tagline = models.CharField(max_length=200, blank=True, null=True)
+    
     intro_box_1 = tinymce_models.HTMLField(help_text="Use Heading3 and Paragraph only!")
     intro_box_1_page = models.ForeignKey('Page', related_name="intro_box_1",
         help_text="Which page does this box link to?")
@@ -73,7 +75,7 @@ class News(models.Model):
         return self.title
     
     def get_absolute_url(self):
-        url = reverse('news', args=[self.slug])
+        url = reverse('news_item', args=[self.slug])
         return url
 
 
