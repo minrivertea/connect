@@ -39,16 +39,16 @@
 	  <a href="/"><img src="{% staticfile '/images/logo.jpg' %}" /></a>
 	</div>
 	
+	{% if tagline %}
 	<span class="tagline">{{ tagline }}</span>
-		
+	{% endif %}	
+	
 	</div>
 		<div id="navigation">
 			<div class="super">
 			<ul>
 				<li><a href="/">{% trans 'Home' %}</a></li>
 				{% for p in topnav %}
-				    {% if forloop.last %}
-				    {% endif %}
 				    <li rel="{{ p.slug }}">
 				      <a class="{% if p.slug in request.path %}selected{% endif %}{% if page.get_root.slug == p.slug %}selected{% endif %}" href="{{ p.get_absolute_url }}">{{ p.title }}</a>
 				      {% if p.get_children %}
