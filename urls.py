@@ -33,6 +33,7 @@ urlpatterns = patterns('',
 #    (r'^feeds/(?P<url>.*)/$', 'django.contrib.syndication.views.feed', {'feed_dict': feeds}),
     (r'^robots\.txt$', 'direct_to_template', {'template': 'robots.txt', 'mimetype': 'text/plain'}),
     url(r'^changelang/(?P<code>[\w-]+)/$', changelang, name="changelang"),
+    url(r'^rosetta/', include('rosetta.urls')),
     
 
     # urls for the pages

@@ -50,7 +50,7 @@
 				<li><a href="/">{% trans 'Home' %}</a></li>
 				{% for p in topnav %}
 				    <li rel="{{ p.slug }}">
-				      <a class="{% if p.slug in request.path %}selected{% endif %}{% if page.get_root.slug == p.slug %}selected{% endif %}" href="{{ p.get_absolute_url }}">{{ p.title }}</a>
+				      <a class="{% if p.slug in request.path %}selected{% endif %}{% if page.get_root.slug == p.slug %} selected{% endif %}" href="{{ p.get_absolute_url }}">{{ p.title }}</a>
 				      {% if p.get_children %}
 		                  <ul class="subnav" rel="{{ p.slug }}">
 		                  {% for x in p.get_children %}

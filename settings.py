@@ -29,16 +29,7 @@ DATABASE_PORT = ''             # Set to empty string for default. Not used with 
 # system time zone.
 TIME_ZONE = 'Asia/Shanghai'
 
-# Language code for this installation. All choices can be found here:
-# http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en-gb'
-
 SITE_ID = 1
-
-
-USE_I18N = True
-USE_L10N = False
-
 
 MEDIA_ROOT = os.path.join(PROJECT_PATH, "static")
 ADMIN_MEDIA_PREFIX = '/admin/media/'
@@ -90,6 +81,7 @@ INSTALLED_APPS = (
     'modeltranslation_wrapper',
     'modeltranslation',
     'tinymce',
+    'rosetta', 
 )
 
 
@@ -111,9 +103,11 @@ LANGUAGES = (
     ('en', gettext('English')),
     ('zh', gettext('Chinese')),
 )
+
 LOCALE_PATHS = (
     os.path.join(PROJECT_PATH, "locale")
 )
+
 MODELTRANSLATION_TRANSLATION_REGISTRY = "translation"
 MODELTRANSLATION_AUTO_POPULATE = False
 
