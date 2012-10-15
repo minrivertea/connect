@@ -41,7 +41,6 @@ def changelang(request, code):
 
 
 def index(request):
-    latestnews = News.objects.filter(is_published=True, date_posted__lte=datetime.now()).exclude(title=None).order_by('-date_posted')[:2]                 
     return render(request, "website/home.html", locals())
 
 def news_item(request, slug):  
@@ -105,7 +104,6 @@ def page(request, slug, x=None, y=None, z=None):
                 # message for the user
                 message = "Thanks, your message has been sent and we'll get back to you ASAP!"
                 messages.add_message(request, messages.INFO, message)
-
                 
                 url = request.META.get('HTTP_REFERER', None)
                 return HttpResponseRedirect(url)

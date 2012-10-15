@@ -29,9 +29,10 @@
   margin: 0;   
 }
 
-#news li:hover h4 {
-  text-decoration: underline;
-  color: #ad2020;   
+#news li h4 .small {
+  font-weight: normal;
+  font-size: 14px;
+  color: #999;   
 }
 
 #news li p {
@@ -39,15 +40,13 @@
   color: #555;   
 }
 
-#news li:hover p {
-  color: #000;   
-}
-
 .pagination {
   width: 100%;
   float: left;
   margin: 20px 0 0 0;   
 }
+
+
 
 </style>
 {% endblock %}
@@ -69,8 +68,7 @@
             <ul id="news">
             {% for n in news.object_list %}
                 <li>
-                    <a href="{% url news_item n.slug %}"><span class="link"></span></a>
-                    <h4>{{ n.title }}</h4>
+                    <h4><a href="{{ n.link }}">{{ n.title }}</a> <span class="small">({{ n.get_link_domain }})</span></h4>
                     <p>[{{ n.date_posted|date:"d M Y" }}] {{ n.summary }}</p>
                 </li>
             {% endfor %}

@@ -73,14 +73,7 @@
 
 <div id="footer">
 	<div class="super">
-		<p class="explain">We've worked with some of Fujian's largest companies, training their staff in English. <br/>Click a logo to see more &raquo;</p>
-		<div id="testimonials">
-		{% for x in testimonials %}
-		  {% thumbnail x.image "120x120" crop="center" as im %}
-		  <a href="{{ x.get_absolute_url }}"><img src="{{ im.url }}" /></a>
-		  {% endthumbnail %}
-		{% endfor %}
-		</div>
+
 	</div>
 </div>
 

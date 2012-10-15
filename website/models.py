@@ -64,6 +64,7 @@ class News(models.Model):
     date_posted = models.DateTimeField(help_text="Set this to a date in the future to do scheduled posting of news.")
     slug = models.SlugField(help_text="The URL of the page - only dashes and lowercase a-z characters please!")
     title = models.CharField(max_length=256, help_text="Name of the news item.")
+    link = models.URLField(help_text="The external URL you will link this story to. Please include the opening http://")
     summary = models.TextField(help_text="A short summary of the item (appears in listings)")
     text = tinymce_models.HTMLField()
     image = models.ImageField(upload_to='images/news', blank=True, null=True,
@@ -78,22 +79,29 @@ class News(models.Model):
     def get_absolute_url(self):
         url = reverse('news_item', args=[self.slug])
         return url
+    
+    def get_link_domain(self):
+        from urlparse import urlparse
+        url = urlparse(self.link).netloc
+        return url
 
-
-PROJECT = 'project.html'
-CONTACT = 'contact.html'
-SOCIAL = 'social.html'
-RIGHT_BOXES = (
-    (PROJECT, u"Project"),
-    (SOCIAL, u"Social"),
-    (CONTACT, u"Contact Us"),
-)
 
 
 class RightBox(models.Model):
     title = models.CharField(max_length=200, blank=True, null=True,
         help_text="Optional title of the box (appears on the page)")
-    template = models.CharField(max_length=200, choices=RIGHT_BOXES,
+    
+    PROJECT = 'project.html'
+    CONTACT = 'contact.html'
+    SOCIAL = 'social.html'
+    RIGHT_BOXES = (
+        (PROJECT, u"Project"),
+        (SOCIAL, u"Social"),
+        (CONTACT, u"Contact Us"),
+    )
+        
+
+    template = models.CharField(max_length=200, choices=RIGHT_BOXES, default=PROJECT, 
         help_text="Choose which kind of box it is")
     content = tinymce_models.HTMLField(blank=True, null=True,
         help_text="The text content of the box")
@@ -103,7 +111,10 @@ class RightBox(models.Model):
         help_text="An optional link which will be applied to the whole box.")
     
     def __unicode__(self):
-        return self.title
+        if self.title:
+            return self.title
+        else:
+            return self.template
 
 
 
@@ -130,31 +141,30 @@ class Page(models.Model):
     is_client_testimonial = models.BooleanField(default=False,
         help_text="Click this if the page is a client testimonial. It will appear in the footer if it is.")
     
+    right_boxes = models.ManyToManyField(RightBox, blank=True, null=True)
+    
     def __unicode__(self):
         return self.title
         
     
     def get_root(self):
-        
         def _iterator(obj):
             if obj.parent:
                 return _iterator(obj.parent)
             else:
                 return obj
-        
         return _iterator(self)
     
     def get_boxes(self):
-        #boxes = self.boxes
-        #if not self.boxes:
-        #    boxes = self.get_root.boxes
-        boxes = RightBox.objects.exclude(title=None, link=None, content=None)
-        
-        html = []
+        boxes = self.right_boxes.all()
+        if not self.right_boxes.all():
+            boxes = self.get_root().right_boxes.all()
+        html = ''
+        print boxes
         for b in boxes:
             template = 'boxes/%s' % b.template
             x = render_to_string(template, {'box':b,})
-            html.append(x)
+            html = ''.join((html, x))
             
         return html
         

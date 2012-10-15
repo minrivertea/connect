@@ -5,7 +5,7 @@ class PageTranslationOptions(TranslationOptions):
     fields = ('slug', 'title', 'meta_description', 'meta_title', 'content')
     
 class NewsTranslationOptions(TranslationOptions):
-    fields = ('slug', 'title', 'text', 'summary')
+    fields = ('slug', 'title', 'summary')
 
 class RightBoxTranslationOptions(TranslationOptions):
     fields = ('title', 'content', 'link',)

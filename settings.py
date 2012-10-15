@@ -89,7 +89,7 @@ INSTALLED_APPS = (
     'sorl.thumbnail',
     'modeltranslation_wrapper',
     'modeltranslation',
-    
+    'tinymce',
 )
 
 

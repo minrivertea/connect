@@ -16,7 +16,7 @@
 #feature {
   width: 100%;	
   float: left;
-  margin: 40px 0 30px 0;
+  margin: 0px 0 30px 0;
 }
 
 #feature .super {
@@ -161,6 +161,19 @@ a.feature {
 
 {% block content %}
 
+{% if homepage.image_promo_image %}
+<div id="feature">
+  <div class="super">
+    <a href="{{ homepage.image_promo_page.get_absolute_url }}"><span class="link"></span></a>
+    <div class="linkback"></div>
+    <a href="{{ homepage.image_promo_page.get_absolute_url }}" class="featurelink">{{ homepage.image_promo_text|safe }} &raquo;</a>
+    {% thumbnail homepage.image_promo_image "960" crop="" as im %}
+    	<img src="{{ im.url }}">
+    {% endthumbnail %}
+  </div>
+</div>
+{% endif %}
+
 {% if homepage.intro_box_1 %}
 <div id="banner">
   <div class="super">
@@ -184,18 +197,7 @@ a.feature {
 </div>	
 {% endif %}
 
-{% if homepage.image_promo_image %}
-<div id="feature">
-  <div class="super">
-    <a href="{{ homepage.image_promo_page.get_absolute_url }}"><span class="link"></span></a>
-    <div class="linkback"></div>
-    <a href="{{ homepage.image_promo_page.get_absolute_url }}" class="featurelink">{{ homepage.image_promo_text|safe }} &raquo;</a>
-    {% thumbnail homepage.image_promo_image "960" crop="" as im %}
-    	<img src="{{ im.url }}">
-    {% endthumbnail %}
-  </div>
-</div>
-{% endif %}
+
 
 {% if homepage.twin_box_1 %}
 <div id="more">
