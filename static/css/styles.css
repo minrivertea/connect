@@ -120,7 +120,7 @@ h4 {
 
 #header {
 	float: left;
-	padding: 20px 0 0px 0;
+	padding: 15px 0 0px 0;
 	width: 100%;
 	margin: 0 0 35px 0;
 	background: #fff;
@@ -186,7 +186,7 @@ span.tagline {
 }
 
 #navigation ul li a {
-    font-size: 14px;
+    font-size: 16px;
     font-family: Helvetica, arial, sans-serif;
     font-weight: bold;
     margin: 0 0px 0 0;
