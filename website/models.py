@@ -67,6 +67,7 @@ class News(models.Model):
     link = models.URLField(help_text="The external URL you will link this story to. Please include the opening http://")
     summary = models.TextField(help_text="A short summary of the item (appears in listings)")
     text = tinymce_models.HTMLField()
+    news_type = models.CharField(max_length=100, choices=settings.NEWS_TYPES)
     image = models.ImageField(upload_to='images/news', blank=True, null=True,
         help_text="An optional image; larger than 200px wide please!")
     is_published = models.BooleanField(default=False,

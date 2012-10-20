@@ -111,6 +111,12 @@ LOCALE_PATHS = (
 MODELTRANSLATION_TRANSLATION_REGISTRY = "translation"
 MODELTRANSLATION_AUTO_POPULATE = False
 
+NEWS_TYPES = (
+    ('periodicals', gettext('Periodicals')),
+    ('articles', gettext('Articles')),
+)
+
+
 
 #tinyMCE stuff
 TINYMCE_JS_URL = "js/tiny_mce/tiny_mce.js"

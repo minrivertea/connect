@@ -29,7 +29,6 @@ def changelang(request, code):
         next = '/'
     response = HttpResponseRedirect(next)
     lang_code = code
-    print lang_code
     if lang_code and check_for_language(lang_code):
         if hasattr(request, 'session'):
             request.session['django_language'] = lang_code
@@ -55,7 +54,12 @@ def page(request, slug, x=None, y=None, z=None):
         return HttpResponseRedirect(page.get_absolute_url())
     
     if slug == 'news':
+        
+        choices = settings.NEWS_TYPES
         news_list = News.objects.filter(is_published=True, date_posted__lte=datetime.now()).exclude(title=None)
+    
+        if request.GET.get(''):
+            news_list = news_list.filter(news_type=request.GET.get(''))
     
         paginator = Paginator(news_list, 10) # Show 25 contacts per page
     

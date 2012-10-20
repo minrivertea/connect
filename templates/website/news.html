@@ -63,7 +63,16 @@
   		
   		<div class="left">
   		    
+  		    
   		    {{ page.content|safe }}
+  		    
+  		    <p>
+  		        Filter by:
+      		    <a href="{{ page.get_absolute_url }}">Show all</a> | 
+      		    {% for c,v in choices %}
+  	     	        <a href="?={{ c }}">{{ v }}</a> {% if not forloop.last %}|{% endif %} 
+  		        {% endfor %}
+  		    </p>
   		    
             <ul id="news">
             {% for n in news.object_list %}
