@@ -3,10 +3,7 @@ from django.conf import settings
 from django.template.loader import render_to_string
 from django.core.urlresolvers import reverse
 
-
-
-from tinymce import models as tinymce_models
-
+from ckeditor.fields import RichTextField
 
 
 class HomePage(models.Model):
@@ -17,24 +14,24 @@ class HomePage(models.Model):
     logo_tagline = models.CharField(max_length=200, blank=True, null=True,
         help_text="A tagline that appears near the logo in the header of all pages.")
     
-    intro_box_1 = tinymce_models.HTMLField(help_text="Use Heading3 and Paragraph only!")
+    intro_box_1 = RichTextField(help_text="Use Heading3 and Paragraph only!")
     intro_box_1_page = models.ForeignKey('Page', related_name="intro_box_1",
         help_text="Which page does this box link to?")
     intro_box_1_text = models.CharField(max_length=200,
         help_text="The words which appear in the button")
     
-    intro_box_2 = tinymce_models.HTMLField()
+    intro_box_2 = RichTextField()
     intro_box_2_page = models.ForeignKey('Page', related_name="intro_box_2")
     intro_box_2_text = models.CharField(max_length=200)
     
-    intro_box_3 = tinymce_models.HTMLField()
+    intro_box_3 = RichTextField()
     intro_box_3_page = models.ForeignKey('Page', related_name="intro_box_3")
     intro_box_3_text = models.CharField(max_length=200)
     
-    twin_box_1 = tinymce_models.HTMLField(null=True, blank=True)
-    twin_box_2 = tinymce_models.HTMLField(null=True, blank=True)
+    twin_box_1 = RichTextField(null=True, blank=True)
+    twin_box_2 = RichTextField(null=True, blank=True)
     
-    long_box = tinymce_models.HTMLField(null=True, blank=True)
+    long_box = RichTextField(null=True, blank=True)
     
     image_promo_image = models.ImageField(upload_to='images/promo',
         help_text="A large image spanning the whole page. 960px wide or more please!")
@@ -66,7 +63,7 @@ class News(models.Model):
     title = models.CharField(max_length=256, help_text="Name of the news item.")
     link = models.URLField(help_text="The external URL you will link this story to. Please include the opening http://")
     summary = models.TextField(help_text="A short summary of the item (appears in listings)")
-    text = tinymce_models.HTMLField()
+    text = RichTextField()
     news_type = models.CharField(max_length=100, choices=settings.NEWS_TYPES)
     image = models.ImageField(upload_to='images/news', blank=True, null=True,
         help_text="An optional image; larger than 200px wide please!")
@@ -104,7 +101,7 @@ class RightBox(models.Model):
 
     template = models.CharField(max_length=200, choices=RIGHT_BOXES, default=PROJECT, 
         help_text="Choose which kind of box it is")
-    content = tinymce_models.HTMLField(blank=True, null=True,
+    content = RichTextField(blank=True, null=True,
         help_text="The text content of the box")
     image = models.ImageField(null=True, blank=True, upload_to="images/right-boxes",
         help_text="An optional image to appear in the box. At least 200px wide please!")
@@ -130,7 +127,7 @@ class Page(models.Model):
         help_text="A description of the page useful for Google.")
     parent = models.ForeignKey('self', blank=True, null=True, 
         help_text="Is this the subpage of another?")
-    content = tinymce_models.HTMLField()
+    content = RichTextField()
     image = models.ImageField(upload_to='images/learn', blank=True, null=True,
         help_text="Optional promo image for this page.")
     template = models.CharField(max_length=200, blank=True, null=True, 

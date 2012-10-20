@@ -33,6 +33,7 @@ SITE_ID = 1
 
 MEDIA_ROOT = os.path.join(PROJECT_PATH, "static")
 ADMIN_MEDIA_PREFIX = '/admin/media/'
+STATIC_URL = ''
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = ''
@@ -81,7 +82,8 @@ INSTALLED_APPS = (
     'modeltranslation_wrapper',
     'modeltranslation',
     'tinymce',
-    'rosetta', 
+    'rosetta',
+    'ckeditor', 
 )
 
 
@@ -116,6 +118,25 @@ NEWS_TYPES = (
     ('articles', gettext('Articles')),
 )
 
+
+CKEDITOR_UPLOAD_PATH = os.path.join(MEDIA_ROOT, 'images/ckuploads')
+CKEDITOR_UPLOAD_PREFIX = "/images/ckuploads/"
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': [
+            [      'Undo', 'Redo',
+              '-', 'Bold', 'Italic', 'Underline', 'BulletedList', 'NumberedList', 'Image',
+              '-', 'Link', 'Unlink', 'Anchor',
+              '-', 'Format',
+              '-', 'PasteFromWord',
+              '-', 'Maximize', 'Source', 
+            ],
+        ],
+        'width': 840,
+        'height': 300,
+        'toolbarCanCollapse': False,
+    }
+}
 
 
 #tinyMCE stuff
