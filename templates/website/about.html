@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+{% load thumbnail django_static i18n %}
+
+{% block meta-description %}{% endblock %}
+{% block title %}{% trans 'About Us' %}{% endblock %}
+
+
+{% block extrajs %}
+<script type="text/javascript">
+
+$('.image').click( function() {
+    var ref = $(this).attr('id');
+    $('#text div:visible').fadeOut(100, function() {
+        $('.image').removeClass('selected');
+        $('#text div[rel='+ref+']').fadeIn(); 
+        $('#'+ref+'.image').addClass('selected');
+    });
+    
+    
+});
+
+</script>
+{% endblock %}
+
+{% block extracss %}
+<style type="text/css">
+#bios {
+  background: #111;
+  padding: 15px;
+  float: left; 
+  width: 663px;  
+}
+
+#bios .image {
+  float: left;
+  margin: 0 15px 0 0;  
+  position: relative; 
+}
+
+#bios .image:last-child {
+  margin-right: 0;   
+}
+
+#bios .image img {
+  border: 3px solid transparent; 
+  margin-bottom: 10px;
+  opacity: 0.7;  
+}
+
+#bios #text {
+  float: left;
+  margin: 15px 0 0 10px;
+  padding: 0px 40px 0 0 ;  
+}
+
+#bios .image h4 {
+  font-family: Helvetica, sans-serif;
+  font-weight: bold;
+  color: #c1c1c1; 
+  margin: 0 0 0px 10px;
+}
+
+#bios .image.selected img {
+  opacity: 1;   
+}
+
+#bios .image.selected h4 {
+  color: #92b0cd;   
+  text-decoration: underline;
+}
+
+#bios .image:hover {
+  cursor: pointer;   
+}
+
+#bios .image:hover img {
+  opacity: 1;   
+}
+
+#bios .image:hover h4 {
+  color: #e1e1e1;   
+}
+
+#bios #text p {
+  color: #fff;
+  font-size: 15px; 
+  margin: 0 0 15px 0;  
+}
+
+#bios #text div {
+  display: none;   
+}
+
+#bios #text div.selected {
+}
+
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div id="content">
+  <div class="super">
+  		<h1>{% trans 'About Us' %}</h1>
+  		
+  		<div class="right">
+  		    {{ page.get_boxes|safe }}
+  		</div>
+  		
+  		<div class="left">
+  		    
+  		    {{ page.content|safe }}
+            
+            <h3>Our team <span>(click our photos to see more information)</span></h3>
+            <div id="bios">
+                <div class="image selected" id="kyle"><img src="{% staticfile '/images/kyle.jpg' %}"/><h4>Kyle Murray</h4></div>
+                <div class="image" id="peter"><img src="{% staticfile '/images/peter.jpg' %}"/><h4>Peter Reeves</h4></div>
+                <div class="image" id="david"><img src="{% staticfile '/images/david.jpg' %}"/><h4>David Gooch</h4></div>
+                <div id="text">
+                    <div rel="kyle" style="display: block;">
+                        <p>Kyle earned a degree in marketing management from the University of Guelph, Canada. Kyle has been gaining experience living and teaching in Asia since 2003. </p><p>Kyle’s strong organisational talents and proven leadership skills have made him an integral component of the Connect team. Kyle utilizes his strong financial background to great effect both as a part of company management and as a well-respected and highly regarded trainer.</p> <p>Outside of the training room, you’re likely to find Kyle reading up on current events around the world or reeling off facts and stats about any number of sports. While most of his time is now spent at the office, he still likes to pull on his boots and find a game of veteran’s football when he can.    </p>
+                    </div>
+                    <div rel="peter" class="">
+                        <p>Pete studied at Wilfrid Laurier University, one of Canada’s leading business schools. Pete’s work background encompasses four continents and spans more than a decade. </p>
+<p>His attention to detail and ability to build strong personal and professional relationships have led to Pete successfully taking on a number of senior positions. These attributes have helped shape the philosophy and direction of Connect.</p>
+<p>Pete travels as often as he can always hoping to see or experience something new. This means he thinks he is never short of anything to talk about!</p>
+                    </div>
+                    <div rel="david" class="">
+                        <p>Dave hails from East Anglia, England and attended university in Liverpool.			
+Dave has amassed thousands of hours of training with some of the largest corporations in Europe and Asia which gives him a working understanding of both regions. He specialises in programme creation and implementation as well as teacher training.</p>
+<p>His calm, professional and approachable nature inspires professionalism and confidence in others. As a goal driven individual, Dave consistently achieves outstanding results in the workplace.</p>
+<p>When not at work, Dave likes to entertain by strumming a tune or two on his guitar, cooking up a storm in the kitchen or telling his latest tale.</p>
+                </div>
+            </div>
+            
+		</div>
+  </div>
+</div>
+
+{% endblock %}
