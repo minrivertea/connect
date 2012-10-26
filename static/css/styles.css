@@ -211,7 +211,7 @@ span.tagline {
 #navigation ul ul {
     border: medium none;
     display: none;
-    height: 0;
+    height: auto;
     padding: 5px 0 5px;
     position: absolute;
     top: 39px;
@@ -220,7 +220,7 @@ span.tagline {
     z-index: 20;
 }
 
-#navigation ul ul a {
+#navigation ul ul a:link, #navigation ul ul a:visited {
   height: auto;
   width: 150px;
   margin: 0;
