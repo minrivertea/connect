@@ -27,7 +27,7 @@ input.button:hover {
   cursor: pointer;   
 }
 
-#navigation li:hover ul.subnav {
+#navigation li a:hover ul.subnav {
   display: block;  
   float: left; 
 }
