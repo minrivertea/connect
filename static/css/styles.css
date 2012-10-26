@@ -241,7 +241,7 @@ span.tagline {
     background: none repeat scroll 0 0 #2F5C95;
     border: medium none;
     box-shadow: 0 2px 3px #000000;
-    display: none;
+    visibility: hidden;
     float: left;
     height: auto;
     padding: 5px 0 5px;
@@ -252,7 +252,7 @@ span.tagline {
 }
 
 #navigation li:hover ul.subnav {
-  display: block;   
+  visibility: visible;   
 }
 
 #navigation ul.subnav li {
