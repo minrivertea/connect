@@ -1,3 +1,7 @@
 a.button, a.button:link, a.button:visited, .button {
     color: #fff;
 }
+
+#banner .box {
+  width: 290px;   
+}
