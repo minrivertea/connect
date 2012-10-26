@@ -10,7 +10,7 @@ a.button, a.button:link, a.button:visited, .button {
   width: auto;   
 }
 
-.left form input[type="text"] {
+input {
   height: 30px;
   padding: 10px;   
 }
