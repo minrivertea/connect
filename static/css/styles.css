@@ -173,37 +173,43 @@ span.tagline {
   width: 100%;
   margin: 20px 0 0;
   background: #154178;
+  position: relative;
 }
 
 #navigation ul {
   list-style-type: none;
+  margin: 0;
+  padding: 0;
   width: auto;
   border-left: 1px solid #103768;
   border-right: 1px solid #2f5c95;
   float: left;
-  height: 44px;	
+  height: 45px;	
 }
 
-#navigation ul li {
-  float: left;	
+#navigation li {
+  float: left;
+  position: relative;
 }
 
-#navigation ul li a {
-    font-size: 16px;
-    font-family: Helvetica, arial, sans-serif;
-    font-weight: bold;
-    margin: 0 0px 0 0;
-    color: #fff;
-    padding: 6px 15px;
-    float: left;
-    border-left: 1px solid #2f5c95;
+#navigation a, #navigation a:visited {
+    border-left: 1px solid #2F5C95;
     border-right: 1px solid #103768;
-    text-shadow: 0px 0px 2px #000;
-    position: relative;
-    z-index: 21;
+    color: #FFFFFF;
+    float: left;
+    font-family: Helvetica,arial,sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    height: 34px;
+    padding: 5px 15px;
+    text-shadow: 0 0 2px #000000;
 }
 
-#navigation ul li:last-child a {
+
+
+
+
+#navigation li:last-child a {
   margin: 0;   
 }
 
@@ -218,12 +224,12 @@ span.tagline {
   border-right: 1px solid transparent;  
 }
 
-#navigation ul li a.selected {
+#navigation a.selected {
   background: #2F5C95; 
   border-right: 1px solid transparent; 
 } 
 
-#navigation ul li a.selected:before {
+#navigation a.selected:before {
     border-color: #2F5C95 transparent -moz-use-text-color;
     border-style: solid solid none;
     border-width: 15px 15px 0;
@@ -237,39 +243,36 @@ span.tagline {
     z-index: 2;
 }
 
-#navigation ul.subnav {
-    background: none repeat scroll 0 0 #2F5C95;
+#navigation ul ul {
     border: medium none;
-    box-shadow: 0 2px 3px #000000;
     visibility: hidden;
-    height: auto;
+    height: 0;
     padding: 5px 0 5px;
     position: absolute;
-    top: 44px;
+    top: 39px;
     width: auto;
     z-index: 20;
 }
+
+#navigation ul ul a {
+  height: auto;
+  width: 150px;
+  margin: 0;
+  padding: 0 30px 0 15px;
+  font-size: 13px;
+  color: #fff;
+  text-shadow: none;
+  border: none
+}
+
 
 #navigation ul li:hover ul, #navigation ul a:hover ul {
   visibility: visible;   
 }
 
-#navigation ul.subnav li {
-  float: none;   
-}
-
-#navigation ul.subnav a {
-  color: #fff;
-  text-shadow: none;
-  border: none;
-  margin: 0 0 0px 0;
-  padding: 0 30px 0 15px;
-  float: none;
-  font-size: 13px;
-}
 
 #navigation ul.subnav a:hover {
-  background: none;
+  background: none repeat scroll 0 0 #2F5C95;
   text-decoration: underline; 
 }
 
