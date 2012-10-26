@@ -14,3 +14,7 @@ input {
   height: 30px;
   padding: 10px;   
 }
+
+input.button {
+  height: 60px;   
+}
