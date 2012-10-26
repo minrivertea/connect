@@ -42,7 +42,7 @@ a:hover, a:active {
   color: #ad2020;	
 }
 
-a.button, .button {
+a.button, .button, input.button {
   background: rgb(24,96,160); /* Old browsers */
 background: -moz-linear-gradient(top,  rgba(24,96,160,1) 0%, rgba(24,101,160,1) 51%, rgba(23,88,158,1) 53%, rgba(21,65,120,1) 100%); /* FF3.6+ */
 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(24,96,160,1)), color-stop(51%,rgba(24,101,160,1)), color-stop(53%,rgba(23,88,158,1)), color-stop(100%,rgba(21,65,120,1))); /* Chrome,Safari4+ */
