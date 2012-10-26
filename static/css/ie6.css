@@ -30,3 +30,7 @@ input.button:hover {
 #navigation ul {
   height: 43px;
 }
+
+#header {
+  padding-bottom: 100px;   
+}
