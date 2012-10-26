@@ -27,12 +27,21 @@ input.button:hover {
   cursor: pointer;   
 }
 
+#navigation {
+  z-index: 20;   
+}
+
 #navigation ul {
   height: 43px;
 }
 
 #navigation ul ul {
   top: 38px;
+}
+
+#feature {
+  position: relative;
+  z-index: 1;   
 }
 
 #feature img {
