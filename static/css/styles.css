@@ -216,7 +216,7 @@ span.tagline {
     position: absolute;
     top: 39px;
     left: 0;
-    width: auto;
+    width: 150px;
     z-index: 20;
 }
 

@@ -39,6 +39,10 @@ input.button:hover {
   top: 38px;
 }
 
+#navigation ul ul li:hover {
+  border-right: none;   
+}
+
 #feature {
   position: relative;
   z-index: 1;   
