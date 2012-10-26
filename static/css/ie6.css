@@ -27,9 +27,6 @@ input.button:hover {
   cursor: pointer;   
 }
 
-
-
-#navigation li a:hover ul {
-  visibility: visible;
-  float: left; 
+#navigation ul {
+  height: 43px;
 }

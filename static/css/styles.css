@@ -272,7 +272,7 @@ span.tagline {
 }
 
 
-#navigation ul.subnav a:hover {
+#navigation ul ul a:hover {
   background: none repeat scroll 0 0 #2F5C95;
   text-decoration: underline; 
 }
