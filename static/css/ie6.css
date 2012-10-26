@@ -5,3 +5,7 @@ a.button, a.button:link, a.button:visited, .button {
 #banner .box {
   width: 280px;   
 }
+
+#bios {
+  width: auto;   
+}
