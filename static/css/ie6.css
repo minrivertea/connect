@@ -2,6 +2,10 @@ a.button, a.button:link, a.button:visited, .button {
     color: #FFFFFF;
 }
 
+a.button:hover, a.button:active {
+ color: #EFC507;
+}
+
 #banner .box {
   width: 280px;   
 }
@@ -17,4 +21,13 @@ input {
 
 input.button {
   height: 60px;   
+}
+
+input.button:hover {
+  cursor: pointer;   
+}
+
+#navigation li:hover ul.subnav {
+  display: block;  
+  float: left; 
 }
