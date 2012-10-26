@@ -228,14 +228,9 @@ span.tagline {
   font-size: 13px;
   color: #fff;
   text-shadow: none;
-  border: none
+  border: none;
+  background: none repeat scroll 0 0 #2F5C95;
 }
-
-/*
-#navigation ul li:hover ul, #navigation ul a:hover ul {
-  visibility: visible; 
-}
-*/
 
 
 #navigation ul ul a:hover {
@@ -245,14 +240,11 @@ span.tagline {
 
 
 
-
-
 #navigation li:last-child a {
   margin: 0;   
 }
 
 #navigation ul li a:hover {
-  background: #2F5C95;
   text-decoration: none; 
   border-right: 1px solid transparent;  
 }
