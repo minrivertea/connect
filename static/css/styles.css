@@ -124,6 +124,7 @@ h4 {
 	width: 100%;
 	margin: 0 0 35px 0;
 	background: #fff;
+	overflow: visible;
 }
 
 #logo {
