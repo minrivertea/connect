@@ -34,3 +34,8 @@ input.button:hover {
 #navigation ul ul {
   top: 38px;
 }
+
+#feature img {
+  position: relative;
+  z-index: 1;   
+}
