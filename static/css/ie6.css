@@ -9,3 +9,7 @@ a.button, a.button:link, a.button:visited, .button {
 #bios {
   width: auto;   
 }
+
+.left form input[type="text"] {
+  height: 30px;   
+}
