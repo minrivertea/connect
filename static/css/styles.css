@@ -242,7 +242,6 @@ span.tagline {
     border: medium none;
     box-shadow: 0 2px 3px #000000;
     visibility: hidden;
-    float: left;
     height: auto;
     padding: 5px 0 5px;
     position: absolute;
@@ -251,7 +250,7 @@ span.tagline {
     z-index: 20;
 }
 
-#navigation li:hover ul.subnav {
+#navigation ul li:hover ul, #navigation ul a:hover ul {
   visibility: visible;   
 }
 
