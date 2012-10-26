@@ -11,5 +11,6 @@ a.button, a.button:link, a.button:visited, .button {
 }
 
 .left form input[type="text"] {
-  height: 30px;   
+  height: 30px;
+  padding: 10px;   
 }
