@@ -25,6 +25,10 @@
 	<![endif]-->
     
     {% block extrahead %}{% endblock %}
+    
+    {% if ga_is_on %}
+        {{ homepage.google_analytics|safe }}
+    {% endif %}
                                 
 </head>
 
